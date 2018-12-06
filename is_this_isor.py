@@ -2,14 +2,14 @@
 import os
 import sys
 
-from PIL import Image, ImageDraw
 import face_recognition as fr
+from PIL import Image, ImageDraw
 
 
 def main():
 
     known_images = sys.argv[1]
-    unknow_images = sys.argv[2]
+    unknown_images = sys.argv[2]
     output_images = sys.argv[3]
 
     known_face_encodings = []
@@ -18,9 +18,9 @@ def main():
         encoding = fr.face_encodings(image)[0]
         known_face_encodings.append(encoding)
 
-    for image_n in os.listdir(unknow_images):
+    for image_n in os.listdir(unknown_images):
         try:
-            image = fr.load_image_file(os.path.join(unknow_images, image_n))
+            image = fr.load_image_file(os.path.join(unknown_images, image_n))
             locations = fr.face_locations(image,
                                           number_of_times_to_upsample=0,
                                           model="cnn")
